@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import { useSelector, useDispatch } from 'react-redux';
 import contactsActions from '../../redux/action';
@@ -81,6 +82,10 @@ const ContactForm = ({ onClose }) => {
       <Button type="submit" className={st.btn} value="Create contact" />
     </form>
   );
+};
+
+ContactForm.propTypes = {
+  onClose: PropTypes.func,
 };
 
 export default ContactForm;

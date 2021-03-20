@@ -8,7 +8,7 @@ import st from './ContactsList.module.css';
 const ContactsList = () => {
   const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
-  const onDeleteContact = id => dispatch(contactsActions.deleteContact(id));
+  const handleDeleteContact = id => dispatch(contactsActions.deleteContact(id));
   return (
     <ul>
       {contacts.map(({ id, name, number }) => (
@@ -18,7 +18,7 @@ const ContactsList = () => {
           <Button
             type="button"
             className={st.btn}
-            onClick={() => onDeleteContact(id)}
+            onClick={() => handleDeleteContact(id)}
             value="Delete"
           />
         </li>
@@ -30,9 +30,8 @@ const ContactsList = () => {
 ContactsList.propTypes = {
   contacts: PropTypes.array,
   id: PropTypes.string,
-  contactName: PropTypes.string,
-  contactNumber: PropTypes.string,
-  onDeleteContact: PropTypes.func,
+  name: PropTypes.string,
+  number: PropTypes.string,
 };
 
 export default ContactsList;
