@@ -2,7 +2,7 @@ import ContactsList from './components/ContactsList';
 import ContactsFilter from './components/ContactsFilter';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getVisibleContacts } from './redux/selectors';
+import { getVisibleContacts, getContacts } from './redux/selectors';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Button from './components/Button';
@@ -11,7 +11,8 @@ import st from './App.module.css';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
-  const contacts = useSelector(getVisibleContacts);
+  const visibleContacts = useSelector(getVisibleContacts);
+  const contacts = useSelector(getContacts);
 
   const togleModal = () => setShowModal(!showModal);
   return (
@@ -21,7 +22,7 @@ function App() {
       {showModal && <Modal onClose={togleModal} />}
       <h2 className={st.subtitle}>Contacts</h2>
       {contacts.length > 1 && <ContactsFilter />}
-      {contacts.length > 0 && <ContactsList />}
+      {visibleContacts.length > 0 && <ContactsList />}
       <ToastContainer
         position="top-center"
         autoClose={3000}
